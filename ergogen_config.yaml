@@ -1,0 +1,246 @@
+units:
+  px: cx + 2
+  py: cy + 2
+
+
+  pushX: (cx / 2)
+  pushY: (cy / 2)
+
+  padX: pushX + 3
+  padY: pushY + 4
+
+  pad: 2
+
+  spacing: 0.75
+
+  controllerW: 18.5
+  controllerH: 33.5
+  belowControllerH: 17
+  caseBorder: 1.5
+  screwThreadRadius: 0.5
+  screwPCBRadius: 4.0
+
+footprints:
+  ws2812b:
+    type: led
+    params:
+      outline:
+        width: 5.0        # WS2812B size: 5mm x 5mm
+        height: 5.0
+      pads:
+        - [1.75, -2.0]    # VSS (GND)
+        - [-1.75, -2.0]   # DIN (Data In)
+        - [-1.75, 2.0]    # VDD (Power)
+        - [1.75, 2.0]     # DOUT (Data Out)
+  esp32:
+    type: header
+    size: [2.54, 23]  # Pin pitch and row spacing
+    pins:
+      - [GND, IO23, IO22, TXD0, RXD0, IO21, VIN, EN, IO19, IO18, IO5, IO17, IO16, IO4, IO2]
+      - [IO15, IO13, IO12, IO14, IO27, IO26, IO25, IO33, IO32, IO35, IO34, IO39, IO36, IO3, GND]
+
+
+points:
+  zones:
+    matrix:
+      mirror: 150
+      anchor:
+      columns:
+        first:
+          key.footprint: choc
+          key.rgb: ws2812b
+        second:
+          key.rgb: ws2812b
+          key.splay: 0
+          key.origin: [-12, -19]
+          key.stagger: 8
+          key.footprint: choc
+        third:
+          key.rgb: ws2812b
+          key.origin: [0, -15]
+          key.stagger: 10
+          key.splay: 0
+          key.footprint: choc
+        fourth:
+          key.rgb: ws2812b
+          key.origin: [0, -15]
+          key.stagger: 3
+          key.splay: 0
+          key.footprint: choc
+        fifth:
+          key.rgb: ws2812b
+          key.origin: [0, -15]
+          key.stagger: -6
+          key.splay: 0
+          key.footprint: choc
+      rows:
+        mods:
+          key.rgb: ws2812b
+          key.footprint: choc
+        bottom:
+          key.rgb: ws2812b
+          key.footprint: choc
+        home:
+          key.rgb: ws2812b
+          key.footprint: choc
+        top:
+          key.rgb: ws2812b
+          key.footprint: choc
+    thumbfan:
+      mirror: 150
+      anchor:
+        ref: matrix_fifth_bottom
+        shift: [22, -23] 
+      columns:
+        macro:
+          key.rgb: ws2812b
+          key.footprint: choc
+          key.stagger: -2
+          key.splay: -30
+        pinky:
+          key.rgb: ws2812b
+          key.footprint: choc
+          key.splay: 0
+          key.stagger: 0
+        ring:
+          key.rgb: ws2812b
+          key.footprint: choc
+          key.stagger: 19.3
+          key.shift: [-28]
+        enc:
+          key.shift: [-55, 56]
+          key.splay: 22
+          key.footprint: encoder
+      rows:
+        bottom:
+          key.rgb: ws2812b
+          key.footprint: choc
+
+outlines:
+  keys:
+    - what: rectangle
+      where: true
+      size: [14, 14]
+      fillet: 0
+  board_left:
+    - what: polygon
+      operation: stack
+      fillet: 5
+      points:
+        - ref: matrix_first_top
+          shift: [-padX, padY]
+        - ref: matrix_second_top
+          shift: [-padX, padY]
+        - ref: matrix_third_top
+          shift: [-pushX - pad, padY]
+        - ref: matrix_fourth_top
+          shift: [-pushX - pad, padY]
+        - ref: matrix_fourth_top
+          shift: [padX, padY]
+        - ref: matrix_fifth_top
+          shift: [-pushX + padX, padY]
+        - ref: thumbfan_enc_bottom
+          shift: [padX, padY]
+        - ref: thumbfan_ring_bottom
+          shift: [padX+4, padY]
+        - ref: thumbfan_pinky_bottom
+          shift: [padX+2, -padY]
+        - ref: thumbfan_macro_bottom
+          shift: [-padX, -pushY-padY]
+        - ref: matrix_fifth_mods
+          shift: [-padX, -padY-2]
+        - ref: matrix_fourth_mods
+          shift: [-padX, -pushY-padY]
+        - ref: matrix_third_mods
+          shift: [-padX, -pushY-padY]
+        - ref: matrix_second_mods
+          shift: [-padX, -pushY-padY]
+        - ref: matrix_first_mods
+          shift: [-padX, -padY]
+  board_right:
+    - what: polygon
+      operation: stack
+      fillet: 5
+      points:
+        - ref: mirror_matrix_first_top
+          shift: [-padX, padY]
+        - ref: mirror_matrix_second_top
+          shift: [-padX, padY]
+        - ref: mirror_matrix_third_top
+          shift: [-pushX - pad, padY]
+        - ref: mirror_matrix_fourth_top
+          shift: [-pushX - pad, padY]
+        - ref: mirror_matrix_fourth_top
+          shift: [padX, padY]
+        - ref: mirror_matrix_fifth_top
+          shift: [-pushX + padX, padY]
+        - ref: mirror_thumbfan_enc_bottom
+          shift: [padX, padY]
+        - ref: mirror_thumbfan_ring_bottom
+          shift: [padX+4, padY]
+        - ref: mirror_thumbfan_pinky_bottom
+          shift: [padX+2, -padY]
+        - ref: mirror_thumbfan_macro_bottom
+          shift: [-padX, -pushY-padY]
+        - ref: mirror_matrix_fifth_mods
+          shift: [-padX, -padY-2]
+        - ref: mirror_matrix_fourth_mods
+          shift: [-padX, -pushY-padY]
+        - ref: mirror_matrix_third_mods
+          shift: [-padX, -pushY-padY]
+        - ref: mirror_matrix_second_mods
+          shift: [-padX, -pushY-padY]
+        - ref: mirror_matrix_first_mods
+          shift: [-padX, -padY]
+
+
+
+pcbs:
+  left:
+    outlines:
+      main:
+        outline: board_left
+    footprints:
+      choc:
+        what: choc
+        where: /^matrix_.*|^thumbfan_.*/
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: false
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: /^matrix_.*|^thumbfan_.*/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [7.8, -3.5]
+          rotate: 90
+
+  right:
+    outlines:
+      main:
+        outline: board_right
+    footprints:
+      choc:
+        what: choc
+        where: /^mirror_matrix_.*|^mirror_thumbfan_.*/
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: false
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: /^mirror_matrix_.*|^mirror_thumbfan_.*/
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [7.8, -3.5]
+          rotate: 90
+

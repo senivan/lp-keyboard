@@ -1,0 +1,17 @@
+# Ergogen files
+ergogen_files/
+
+# KiCad backups
+lp-keyboard-backups/
+
+# trash files
+.*
+
+# KiCad prl/pro/sch
+*.kicad_prl
+*.kicad_pro
+fp-info-cache
+lp-keyboard.*
+
+# ensure .gitignore is not excluded
+!.gitignore
