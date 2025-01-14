@@ -13,5 +13,6 @@ lp-keyboard-backups/
 fp-info-cache
 lp-keyboard.*
 
+~*
 # ensure .gitignore is not excluded
 !.gitignore
